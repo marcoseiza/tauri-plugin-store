@@ -24,12 +24,12 @@ struct ChangePayload {
 }
 
 #[derive(Default)]
-struct StoreCollection {
+pub struct StoreCollection {
   stores: Mutex<HashMap<PathBuf, Store>>,
   frozen: bool,
 }
 
-fn with_store<R: Runtime, T, F: FnOnce(&mut Store) -> Result<T, Error>>(
+pub fn with_store<R: Runtime, T, F: FnOnce(&mut Store) -> Result<T, Error>>(
   app: &AppHandle<R>,
   collection: State<'_, StoreCollection>,
   path: PathBuf,
